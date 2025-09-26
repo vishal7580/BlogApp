@@ -3,7 +3,8 @@ import { Editor } from '@tinymce/tinymce-react';
 import { Controller } from 'react-hook-form';
 
 const RTE = ({control,currentContent}) => {
-    // console.log(currentContent)
+
+
   return (
     <div>
     <Controller
@@ -12,7 +13,7 @@ const RTE = ({control,currentContent}) => {
         render={({field:{onChange}})=> (
         <Editor
 
-        apiKey="rl81eh4jju08y51bwfpxhncnrcm4lkematwaeksbjhnt4x3o"   // use "no-api-key" for testing
+        apiKey={import.meta.env.VITE_TINYMCE_API_KEY}   // use "no-api-key" for testing
         init={{
             
             skin: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'oxide-dark' : 'oxide'),

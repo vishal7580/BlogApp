@@ -9,7 +9,6 @@ import parse from "html-react-parser";
 const Post = () => {
   const currentUser = useSelector((state) => state.auth.userData);
   let { slug } = useParams();
-  // slug = slug.slice(1)
 
   const [post, setPost] = useState(null);
   const [imgUrl, setImgUrl] = useState(null);
@@ -19,7 +18,7 @@ const Post = () => {
   if (currentUser && post) {
     authorisedUser = currentUser.$id === post.userId ? true : false;
   }
-  // console.log(authorisedUser)
+
   useEffect(() => {
     dbService.getPost(slug).then((post) => {
       const url = fileService.getFileView(post.featuredImage);

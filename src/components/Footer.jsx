@@ -3,19 +3,19 @@ import { Link } from "react-router-dom"
 const Footer = () => {
   const links = [
     {
-    url: '/about',
+    url: '#',
     page: 'About'
     },
     {
-    url: '/contact',
+    url: '#',
     page: 'Contact'
     },
     {
-    url: '/privacy',
+    url: '#',
     page: 'Privacy'
     },
     {
-    url: '/terms',
+    url: '#',
     page: 'Terms'
     },
   ]
@@ -32,7 +32,7 @@ const Footer = () => {
         <div className="flex space-x-6">
           {
             links.map(link => (
-              <Link to={link.url} className=" hover:text-gray-300 ">{link.page}</Link>
+              <Link to={link.url} key={link.page} className=" hover:text-gray-300 ">{link.page}</Link>
             ))
           }
 
