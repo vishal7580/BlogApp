@@ -3,8 +3,6 @@ import { Editor } from '@tinymce/tinymce-react';
 import { Controller } from 'react-hook-form';
 
 const RTE = ({control,currentContent}) => {
-// rl81eh4jju08y51bwfpxhncnrcm4lkematwaeksbjhnt4x3o
-
     // console.log(currentContent)
   return (
     <div>
