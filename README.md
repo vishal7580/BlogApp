@@ -1,12 +1,30 @@
-# React + Vite
+# 📝 Blog Web App  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple blog platform built with **React** (frontend) and **Appwrite** (backend as a service).  
+Users can **sign up, log in, write posts, update posts, and explore posts from others**.  
+The app also integrates the **TinyMCE editor** for rich-text content creation.  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features  
+- 🔑 **Authentication** – Signup, Login, Logout (powered by Appwrite Auth)  
+- ✍️ **Rich Text Editor** – Create and edit posts using **TinyMCE**  
+- 📌 **CRUD Operations** – Create, Read, Update, Delete blog posts  
+- 🌍 **Community Feed** – See all posts created by other users  
+- 🖼️ **Responsive UI** – Built with modern React best practices  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack  
+- **Frontend:** React, React Router, Redux, Tailwind CSS  
+- **Backend:** Appwrite (Auth + Database + Storage)  
+- **Editor:** TinyMCE (Rich Text Editor)  
+- **Deployment:** Vercel (Frontend), Appwrite Cloud (Backend)  
+
+---
+
+## 🔗 Live Demo  
+Check out the live app here: [Blog Web App](https://blog-appwrite-vishal7580.vercel.app)
+- Test Credentials for Login
+  ##email: amitkumar@gmail.com
+  ##password: Bbbb3@nksdlf
