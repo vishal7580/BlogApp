@@ -25,6 +25,6 @@ The app also integrates the **TinyMCE editor** for rich-text content creation.
 
 ## 🔗 Live Demo  
 Check out the live app here: [Blog Web App](https://blog-appwrite-vishal7580.vercel.app)
-- Test Credentials for Login
-  ##email: amitkumar@gmail.com
-  ##password: Bbbb3@nksdlf
+Use the following credentials to log in and test the app:  
+- **Email:** amitkumar@gmail.com
+- **Password:** Bbbb3@nksdlf
