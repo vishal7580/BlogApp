@@ -27,18 +27,18 @@ const Home = () => {
 
 
   return (
-    <div className='p-4 mt-3 '>
+    <div className='px-10 py-8 '>
       {
        authStatus ? 
         posts ?
-          <div className='flex gap-6 flex-wrap '>
+          <div className='flex gap-6 flex-wrap  '>
           {
             posts.map(post=> (
               <PostCard key={post.$id} post={post} fileId = {post.featuredImage}/>
             ))
           }
         </div> :
-        <div className="flex items-center justify-center mt-[40%]">
+        <div className="flex items-center justify-center ">
           <div className="w-14 h-14 border-4 border-white border-dashed rounded-full animate-spin"></div>
         </div>
 

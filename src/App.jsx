@@ -7,10 +7,10 @@ function App() {
   return (
     <div className='bg-slate-300 h-screen'>
       <Container>
-        <div>
-          <Header></Header>
-            <Outlet /> 
-        </div>
+        <Header></Header>
+          <main className='overflow-auto no-scrollbar'>
+              <Outlet /> 
+          </main>
         {/* LOGIN, SIGNUP , ADD POST, EDIT POST -> OUTLET */}
         <Footer/>
       </Container>

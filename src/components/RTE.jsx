@@ -15,7 +15,7 @@ const RTE = ({control,currentContent}) => {
 
         apiKey={import.meta.env.VITE_TINYMCE_API_KEY}   // use "no-api-key" for testing
         init={{
-            
+            height: '50vh',
             skin: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'oxide-dark' : 'oxide'),
         content_css: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default'),
             plugins: [

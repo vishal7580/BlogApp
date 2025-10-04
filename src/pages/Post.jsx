@@ -37,8 +37,8 @@ const Post = () => {
     })
   }
   return post ? (
-    <div className="p-6">
-      <div className="h-[500px] w-full overflow-hidden rounded-lg relative">
+    <div className="px-10 py-8">
+      <div className="overflow-hidden rounded-lg relative">
         <img src={imgUrl} className="w-full h-full object-cover" />
         {
           authorisedUser && 
@@ -71,7 +71,7 @@ const Post = () => {
         </div>
         <div className="">
           <span className="font-semibold text-xl">Content: </span>
-          <span> {parse(post.content)}</span>
+          <span className="inline-block "> {parse(post.content)}</span>
         </div>
       </div>
     </div>

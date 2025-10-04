@@ -35,8 +35,8 @@ const Header = () => {
   ];
   return (
     <>
-        <div className="w-full p-4 bg-slate-600 flex items-center justify-between">
-          <Link to={'/'} className="text-2xl font-semibold text-white uppercase">blog</Link>
+        <div className="w-full py-3 px-4 bg-slate-600 flex items-center justify-between">
+          <Link to={'/'} className="text-xl font-semibold text-white uppercase">blog</Link>
 
           <div className="flex space-x-2">
             {
@@ -44,7 +44,7 @@ const Header = () => {
                 item.active && <div key={item.page}>
                     <Link to={item.url}>
                         <Button
-                        classname="px-4 py-2 rounded-full bg-slate-600 text-white 
+                        classname="px-2 py-1.5 rounded-full bg-slate-600 text-white 
                         hover:bg-white hover:text-black font-semibold
                         transition-colors duration-300"
                         >

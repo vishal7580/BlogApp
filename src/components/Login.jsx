@@ -39,7 +39,7 @@ const Login = () => {
   return (
     
     loading ?
-      <div className="flex items-center justify-center mt-[40%]">
+      <div className="flex items-center justify-center ">
         <div className="w-14 h-14 border-4 border-white border-dashed rounded-full animate-spin"></div>
       </div>  : 
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-xl p-8">

@@ -89,7 +89,7 @@ useEffect(() => {
 }, [post, reset]);
   return (
     <form onSubmit={handleSubmit(createPost)}>
-      <div className="p-6 flex gap-7 ">
+      <div className="p-6 flex gap-6 ">
         <div className="w-2/3 ">
           <Input
             type="text"
@@ -130,13 +130,13 @@ useEffect(() => {
                 post ? 
               <div className=" flex justify-end">
                 <Button type="submit"
-                  classname=" text-white bg-green-500 font-semibold px-6 py-3 rounded-lg shadow hover:bg-green-600 hover:shadow-md transition duration-200"
+                  classname=" text-white bg-green-500 font-semibold px-5 py-2.5 rounded-lg shadow hover:bg-green-600 hover:shadow-md transition duration-200"
                   > Update Post
                 </Button> 
               </div>
               :
               <div className=" flex justify-end">
-                <Button type="submit" classname=" text-white bg-blue-500 font-semibold px-6 py-3 rounded-lg shadow hover:bg-blue-600 hover:shadow-md transition duration-200">
+                <Button type="submit" classname=" text-white bg-blue-500 font-semibold px-5 py-2.5 rounded-lg shadow hover:bg-blue-600 hover:shadow-md transition duration-200">
                 Create Post
                 </Button>
               </div>
@@ -145,7 +145,7 @@ useEffect(() => {
         </div>
 
       </div>
-     <div className="p-5">
+     <div className="px-6 py-2 ">
         <RTE control={control} currentContent={getValues('content') || ''}></RTE>
 
       </div>
