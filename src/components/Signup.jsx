@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { useState } from "react";
 import { authService } from "../appwrite/auth";
 import { useDispatch } from "react-redux";
-import { login } from "../store/authSlice";
+import { login as stateLogin ,logout as stateLogout} from "../store/authSlice";
 
 
 
@@ -13,25 +13,42 @@ const Signup = () => {
 
   const {register,handleSubmit} = useForm()
   const [error,setError] = useState({})
+    const [loading,setLoading] = useState(false)
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function signUp(formData){
     setError({})
-    console.log(formData)
+    setLoading(true)
     
     authService.createAccount(formData)
-    .then((user)=> {
-      dispatch(login(user)) //stores user in state
-      authService.login(user)
-      navigate('/')
+    .then(()=> {
+      authService.login(formData)
+      .then(userData => {
+            if(userData)
+               dispatch(stateLogin(userData))
+            else
+               dispatch(stateLogout())
+            })
+      .catch((error)=> {
+              console.log('error in login',error)
+            })
+    }).finally(()=> {
+        setLoading(false)
+        navigate('/')
     })
   }
   const onError = (formError)=> {
     setError(formError)
   }
-
+// rambir email
+//pass: ramBir12345$
   return (
+        loading ?
+      <div className="flex items-center justify-center ">
+        <div className="w-14 h-14 border-4 border-white border-dashed rounded-full animate-spin"></div>
+      </div>  : 
     <div className="w-full max-w-sm bg-white rounded-2xl shadow-xl p-8">
       <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
         Sign Up

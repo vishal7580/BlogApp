@@ -1,4 +1,4 @@
-import { Client, Databases, ID } from "appwrite";
+import { Client, Databases, ID, Query } from "appwrite";
 import conf from "../config/config";
 
 class DbService {
@@ -68,6 +68,9 @@ class DbService {
         const allPosts = await this.database.listDocuments(
             conf.appwriteDatabaseId,
             conf.appwriteCollectionId,
+            [
+                Query.equal('status','active')
+            ]
         )
         return allPosts;
     } catch (error) {

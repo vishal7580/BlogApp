@@ -20,7 +20,7 @@ const Footer = () => {
     },
   ]
   return (
-    <footer className="bg-slate-600 text-white py-4">
+    <footer className="bg-slate-600 text-white py-4 ">
       <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
         
         {/* Left side - Brand / Text */}

@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 
 
 const PostForm = ({post}) => {
-    // console.log('post: ',post?.title)
+  // console.log('post: ',post?.title)
+    const userData = useSelector((state)=> state.auth.userData)
     const { control, register, handleSubmit, getValues, setValue, reset } = useForm({
       defaultValues: {
         title: '',
@@ -75,7 +76,6 @@ const PostForm = ({post}) => {
     slug = slug[slug.length - 1] === '-' ? slug.slice(0,-1) : slug
     setValue('slug',slug)
   }
-  const userData = useSelector((state)=> state.auth.userData)
 useEffect(() => {
   if (post) {
     reset({

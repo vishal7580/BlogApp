@@ -16,7 +16,6 @@ const Login = () => {
 
   const login = (formData)=> {
     setError({})
-    console.log('login formData: ',formData,loading)
     setLoading(true)
     authService.login(formData)
     .then(userData => {
@@ -28,7 +27,6 @@ const Login = () => {
         console.log('error in login')
       }).finally(()=>{
         setLoading(false)
-        console.log('navigating to /')
         navigate('/')
     })
   }
