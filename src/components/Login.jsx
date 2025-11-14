@@ -5,30 +5,31 @@ import { useForm } from 'react-hook-form'
 import { authService } from '../appwrite/auth'
 import { useDispatch } from 'react-redux'
 import {login as stateLogin,logout as stateLogout} from '../store/authSlice'
+import Loader from './Loader'
 
 const Login = () => {
 
   const {register,handleSubmit} = useForm()
   const [error,setError] = useState({})
+  const [loading,setLoading] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [loading,setLoading] = useState(false)
 
-  const login = (formData)=> {
+  const login = async (formData)=> {
     setError({})
     setLoading(true)
-    authService.login(formData)
-    .then(userData => {
-      if(userData)
-         dispatch(stateLogin(userData))
-      else
-         dispatch(stateLogout())
-      }).catch(()=> {
-        console.log('error in login')
-      }).finally(()=>{
-        setLoading(false)
-        navigate('/')
-    })
+
+    try {
+      const user = await authService.login(formData)
+      dispatch(stateLogin(user))
+      navigate('/')
+      setLoading(false)
+    } catch (error) {
+      console.log(error)
+      setError(error.message)
+      dispatch(stateLogout())
+    }
+
   }
   const onError = (formError)=> {
     setError(formError)
@@ -37,15 +38,13 @@ const Login = () => {
   return (
     
     loading ?
-      <div className="flex items-center justify-center ">
-        <div className="w-14 h-14 border-4 border-white border-dashed rounded-full animate-spin"></div>
-      </div>  : 
-      <div className="w-full max-w-sm bg-white rounded-2xl shadow-xl p-8">
-      <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">Login</h1>
+   <Loader/> : 
+      <div className="md:w-full w-10/12 max-w-sm bg-white rounded-2xl shadow-xl p-5 md:p-8">
+      <h1 className="text-xl md:text-2xl font-bold text-center text-gray-800 mb-3 md:mb-6">Login</h1>
 
       <form onSubmit={handleSubmit(login,onError)}>
         {/* <!-- Email --> */}
-        <div className="mb-4">
+        <div>
           <Input
           label="Email"
             type="email" 
@@ -63,7 +62,7 @@ const Login = () => {
         </div>
 
         {/* <!-- Password --> */}
-        <div className="mb-4">
+        <div>
           <Input
             label='Password'
             type="password" 
@@ -81,13 +80,13 @@ const Login = () => {
         {/* <!-- Button --> */}
         <Button
           type="submit"
-          classname='w-full py-2 bg-indigo-600 text-white font-semibold rounded-lg  hover:bg-indigo-700 transition duration-300'
+          classname='text-sm md:text-base w-full py-1.5 md:py-2 bg-indigo-600 text-white font-semibold rounded-lg  hover:bg-indigo-700 transition duration-300'
         >
           Login
         </Button>
 
         {/* <!-- Sign up link --> */}
-        <p className="mt-4 text-sm text-gray-600 text-center">
+        <p className="mt-2 md:mt-4 text-xs md:text-sm text-gray-600 text-center">
           Don’t have an account? 
           <Link to='/signup' className="text-indigo-600 font-medium hover:underline">Sign Up</Link>
         </p>

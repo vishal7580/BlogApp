@@ -12,7 +12,7 @@ options = [],
           {label}
         </label>
       )}
-        <select className='w-full px-3 py-1.5 rounded-lg border shadow-sm focus:outline-none focus:ring-2 focus:border-transparent'
+        <select className='w-full md:px-3 md:py-1.5 py-1 px-1 text-sm md:text-base rounded-lg border shadow-sm focus:outline-none focus:ring-2 focus:border-transparent'
         {...prop} 
         >
             {

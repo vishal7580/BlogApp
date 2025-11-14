@@ -35,45 +35,37 @@ class AuthService {
         const user = await this.account.get()
         return user;
     } catch (error) {
-            console.log('Appwrite getCurrentAccount error: ',error)
-            console.log('No active session found')
+        console.log('Appwrite getCurrentAccount error: ',error)
     }
-    return null
   }
+
 
   async login ({email,password}){
     try {
-      if(await this.checkAllSessions()){
-        await this.logout()
-      }
-        const session = await this.account.createEmailPasswordSession(email,password)
-          if(session){
-           return await this.getCurrentAccount()
-          }
+        // await this.logout ()
+        await this.account.createEmailPasswordSession(email,password)
+        return await this.getCurrentAccount()
 
     } catch (error) {
-            console.log('createSession error: ',error)
+        console.log('createSession error: ',error)
         
     }
   }
     async  checkAllSessions() {
-    try {
-      const sessions = await this.account.listSessions();
-      console.log("All sessions:", sessions); 
-      return true
-    } catch (err) {
-      console.log("Error fetching sessions:", err.message);
-    }
+      const response = await this.account.listSessions();
+      console.log('active sessions:',response)
+      response?.sessions.forEach(session => {
+        console.log(session.providerUid)
+      });
   }
 
 
   async logout(){
     try {
-        await this.account.deleteSessions();
-        return true
+      await this.account.deleteSession('current');
+      return true
     } catch (error) {
         console.log('Appwrite deleteSessions error: ',error)
-        
     }
     return false
   }

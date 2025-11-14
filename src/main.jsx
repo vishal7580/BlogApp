@@ -12,6 +12,7 @@ import SignUp from './pages/SignUp.jsx';
 import store from './store/store.js';
 import Post from './pages/Post.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
+import LogoutPage from './pages/LogoutPage.jsx';
 
 
 
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home />
+      },
+      {
+        path: '/logout',
+        element: <LogoutPage/>
       },
       {
         element: <ProtectedRoute/>,
@@ -39,7 +44,7 @@ const router = createBrowserRouter([
           {
             path: "post/:slug",
             element: <Post />
-          }
+          },
         ]
       },
       {

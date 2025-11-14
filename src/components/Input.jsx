@@ -12,16 +12,16 @@ export default function Input(
 {
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 text-xs md:text-base">
       {label && (
-        <label className={`${labelClass} block text-sm font-medium text-gray-700 mb-1`}>
+        <label className={`${labelClass} block md:text-sm font-medium text-gray-700 mb-1`}>
           {label}
         </label>
       )}
       <input
         type={type}
         placeholder={placeholder}
-        className={`${inputClass} w-full px-3 py-1.5 rounded-lg border shadow-sm 
+        className={`${inputClass} w-full px-2 py-1 md:px-3 md:py-1.5 rounded-lg border shadow-sm 
           focus:outline-none focus:ring-2 focus:border-transparent
           ${error 
             ? "border-red-500 focus:ring-red-500" 

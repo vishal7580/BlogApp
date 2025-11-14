@@ -1,48 +1,60 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { dbService } from '../appwrite/db'
 import { PostCard } from '../components'
+import { login, logout } from '../store/authSlice'
+import { authService } from '../appwrite/auth'
+import Loader from '../components/Loader'
+import { useNavigate } from 'react-router-dom'
 
 
 const Home = () => {
 
   const [posts,setPosts] = useState(null)
-  const authStatus = useSelector((state)=> state.auth.status)
+  const authStatus = useSelector(state => state.auth.status)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  function allPosts(){
-     console.log('getting all Posts')
-    dbService.getAllPosts()
-    .then(allPosts => {
-      setPosts(allPosts.documents)
-    })
-
+  async function allPosts(){
+    console.log('getting all Posts')
+    try {
+      const posts = await dbService.getAllPosts()
+      setPosts(posts.documents)
+    } catch (error) {
+      console.log(error)
+    } 
+    
   }
-
   useEffect(()=> {
-    if(authStatus){
-      allPosts()
-    }
-
+    authService.getCurrentAccount()
+    .then(user => {
+      console.log(user)
+      if(user){
+        allPosts()
+        dispatch(login(user))
+      } else{
+        dispatch(logout())
+        navigate('/logout')
+      }
+    })
   },[authStatus])
 
 
   return (
     <div className='px-10 py-8 '>
       {
-       authStatus ? 
+       authStatus &&
         posts ?
-          <div className='flex gap-6 flex-wrap  '>
+          <div className='flex gap-6 flex-wrap  w-full justify-center'>
           {
             posts.map(post=> (
               <PostCard key={post.$id} post={post} fileId = {post.featuredImage}/>
             ))
           }
-        </div> :
-        <div className="flex items-center justify-center ">
-          <div className="w-14 h-14 border-4 border-white border-dashed rounded-full animate-spin"></div>
-        </div>
+        </div> : <Loader />
 
-        : <div className='text-2xl mx-auto w-full text-white text-center font-semibold '> Login to See Blogs</div>
+
+     
       }
     </div>
   )

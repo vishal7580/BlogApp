@@ -9,7 +9,7 @@ function App() {
           <main className='overflow-auto no-scrollbar'>
               <Outlet /> 
           </main>
-        {/* LOGIN, SIGNUP , ADD POST, EDIT POST -> OUTLET */}
+        {/* LOGIN, SIGNUP , ADD POST -> OUTLET */}
         <Footer/>
       </Container>
     </div>

@@ -13,31 +13,26 @@ const Signup = () => {
 
   const {register,handleSubmit} = useForm()
   const [error,setError] = useState({})
-    const [loading,setLoading] = useState(false)
-  
+  const [loading,setLoading] = useState(false)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  function signUp(formData){
+
+ async function signUp(formData){
     setError({})
     setLoading(true)
-    
-    authService.createAccount(formData)
-    .then(()=> {
-      authService.login(formData)
-      .then(userData => {
-            if(userData)
-               dispatch(stateLogin(userData))
-            else
-               dispatch(stateLogout())
-            })
-      .catch((error)=> {
-              console.log('error in login',error)
-            })
-    }).finally(()=> {
-        setLoading(false)
-        navigate('/')
-    })
+    try {
+      await authService.createAccount(formData)
+      const user = await authService.login(formData)
+      if(!user) throw new Error('error in login')
+      dispatch(stateLogin(user))
+    } catch (error) {
+      dispatch(stateLogout())
+    }
+    finally{
+      setLoading(false)
+      navigate('/')
+    }
   }
   const onError = (formError)=> {
     setError(formError)
@@ -49,8 +44,8 @@ const Signup = () => {
       <div className="flex items-center justify-center ">
         <div className="w-14 h-14 border-4 border-white border-dashed rounded-full animate-spin"></div>
       </div>  : 
-    <div className="w-full max-w-sm bg-white rounded-2xl shadow-xl p-8">
-      <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+    <div className="md:w-full w-10/12 max-w-sm bg-white rounded-2xl shadow-xl p-5 md:p-8">
+      <h1 className="text-2xl font-bold text-center text-gray-800 mb-3 md:mb-6">
         Sign Up
       </h1>
 
@@ -103,14 +98,14 @@ const Signup = () => {
         {/* <!-- Button --> */}
         <Button
           type="submit"
-          classname="w-full py-2 bg-indigo-600 text-white font-semibold rounded-lg 
+          classname="text-sm md:text-base w-full py-1.5 md:py-2 bg-indigo-600 text-white font-semibold rounded-lg 
                   hover:bg-indigo-700 transition duration-300"
         >
           Sign Up
         </Button>
 
         {/* <!-- Login link --> */}
-        <p className="mt-4 text-sm text-gray-600 text-center">
+        <p className="mt-2 md:mt-4 text-xs md:text-sm text-gray-600 text-center">
           Already have an account?{" "}
           <Link
             to="/login"

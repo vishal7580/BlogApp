@@ -37,17 +37,17 @@ const Post = () => {
     })
   }
   return post ? (
-    <div className="px-10 py-8">
+    <div className="md:px-10 md:py-8 p-5">
       <div className="overflow-hidden rounded-lg relative">
         <img src={imgUrl} className="w-full h-full object-cover" />
         {
           authorisedUser && 
-          <div className="flex gap-3 absolute top-4 right-4">
+          <div className="flex gap-3 absolute top-1 right-1 md:top-4 md:right-4">
             {/* Edit Button */}
             <Link to= {`/edit-post/${slug}`}>
 
             <button
-              className="px-4 py-2 rounded-lg bg-green-100 text-green-700 font-medium 
+              className="py-1 px-2.5 text-sm md:text-base md:px-4 md:py-2 rounded-lg bg-green-100 text-green-700 font-medium 
                 hover:bg-green-200 hover:text-green-800 transition-colors duration-200"
             >
               Edit
@@ -55,7 +55,7 @@ const Post = () => {
             </Link>
             {/* Delete Button */}
             <button
-              className="px-4 py-2 rounded-lg bg-red-500 text-white font-medium 
+              className="py-1 px-2.5 text-sm md:text-base md:px-4 md:py-2 rounded-lg bg-red-500 text-white font-medium 
             hover:bg-red-600 transition-colors duration-200"
             onClick={deletePost}
             >
